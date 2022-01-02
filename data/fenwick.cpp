@@ -1,0 +1,25 @@
+template <typename T>
+struct Fenwick {
+	int n;
+	vector<T> tree;
+
+	Fenwick(int _n) : n(_n) {
+		tree.resize(n);
+	}
+
+	void update(int x, T v) {
+		for (int i = x; i <= n; i += i & -i)
+			tree[i] += v;
+	}
+
+	T query(int x) {
+		T ret = 0;
+		for (int i = x; i > 0; i -= i & -i)
+			ret += tree[i];
+		return ret;
+	}
+
+	T query(int l, int r) {
+		return query(r) - query(l - 1);
+	}
+};
