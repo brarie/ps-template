@@ -8,7 +8,7 @@ struct Fenwick {
 	}
 
 	void update(int x, T v) {
-		for (int i = x; i <= n; i += i & -i)
+		for (int i = x; i < n; i += i & -i)
 			tree[i] += v;
 	}
 
