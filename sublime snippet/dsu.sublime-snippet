@@ -13,10 +13,13 @@ struct dsu {
 		return (x == p[x] ? x : (p[x] = find(p[x])));
 	}
 
-	inline void merge(int u, int v) {
+	inline bool merge(int u, int v) {
 		u = find(u), v = find(v);
-		if (u == v) return;
+		if (u == v) {
+			return false;
+		}
 		p[u] = v;
+		return true;
 	}
 };
 ]]></content>
